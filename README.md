@@ -1,133 +1,207 @@
-# Hospital Management System Backend
+# 🏥 Hospital Management System – Backend (Spring Boot)
 
-## Project Overview
+## 📌 Project Overview
 
-This is a comprehensive hospital management system backend developed with Spring Boot. The application is designed to manage patient records, medical staff, diagnostics, and various hospital facilities in a unified system.
+The **Hospital Management System Backend** is a comprehensive Spring Boot–based RESTful application designed to streamline hospital operations by managing patients, medical staff, clinical records, and facilities in a unified platform.
 
-## Features
+The system focuses on modular design, scalable architecture, and clean data relationships to support real-world healthcare workflows such as diagnosis tracking, diet management, room allocation, and patient mobility monitoring.
 
-- **Nurse Management**: CRUD operations for nurses, including authentication and specialization tracking
-- **Patient Management**: Store and retrieve patient information including personal details, medical history, and emergency contacts
-- **Staff Management**: Track auxiliary staff with authentication
-- **Medical Record Management**: Maintain detailed patient diagnoses, vital signs, and observations
-- **Facility Management**: Room allocation and tracking
-- **Diet Tracking**: Record and monitor patient diets, dietary requirements, and texture types
-- **Mobilization Management**: Track patient mobility, including sedestation and walking assistance
-- **Drainage System**: Monitor patient drain outputs and types
-- **Hygiene Management**: Record hygiene types and procedures
+---
 
-## Technology Stack
+## 🚀 Key Features
 
-- **Java**: Core programming language
-- **Spring Boot**: Application framework
-- **Spring Data JPA**: Data persistence
-- **Jakarta Persistence**: ORM mapping
-- **RESTful API**: Service architecture
+### 👩‍⚕️ Nurse Management
 
-  ## Entity Relationship
+* Secure authentication
+* CRUD operations
+* Specialization tracking
 
-The system is built around the following key entities:
+### 🧑‍🤝‍🧑 Auxiliary Staff Management
 
-- **Patient**: Core entity with personal information and medical history
-- **Register**: Central record linking patients with various medical data
-- **Nurse**: Nursing staff entity
-- **Auxiliary**: Medical staff entity
-- **Diagnosis**: Patient diagnoses with detailed descriptions
-- **DetailDiagnosis**: Specific diagnosis details including dependency levels and equipment
-- **VitalSign**: Patient vital statistics tracking
-- **Diet**: Nutrition tracking with various types and textures
-- **Room**: Facility management
-- **Observation**: Additional patient notes
-- **Mobilization**: Patient mobility tracking
-- **Drain**: Drainage system monitoring
+* Staff authentication
+* Profile management
 
-## API Endpoints
+### 🧍 Patient Management
+
+* Personal details & emergency contacts
+* Medical history storage
+* Observation records
+
+### 📋 Medical Records
+
+* Diagnoses & detailed diagnosis levels
+* Vital signs monitoring
+* Observations and clinical notes
+
+### 🏨 Facility Management
+
+* Room creation and allocation
+* Patient–room mapping
+
+### 🥗 Diet Tracking
+
+* Diet plans with texture types
+* Dietary requirements
+* Many-to-many diet relationships
+
+### 🚶 Mobilization Management
+
+* Sedestation tracking
+* Walking assistance monitoring
+
+### 🩺 Drain Management
+
+* Drain types
+* Output tracking
+
+### 🚿 Hygiene Management
+
+* Hygiene procedures and types
+
+---
+
+## 🛠 Technology Stack
+
+* **Java 17**
+* **Spring Boot**
+* **Spring Data JPA**
+* **Jakarta Persistence (Hibernate)**
+* **RESTful APIs**
+* **MySQL**
+
+---
+
+## 🧩 Core Entities
+
+* **Patient** – Central patient profile and history
+* **Register** – Main medical record hub
+* **Nurse** – Nursing staff
+* **Auxiliary** – Supporting medical staff
+* **Diagnosis** – Patient diagnosis records
+* **DetailDiagnosis** – Dependency levels & equipment
+* **VitalSign** – Patient vitals
+* **Diet** – Nutrition tracking
+* **Room** – Hospital facilities
+* **Observation** – Additional notes
+* **Mobilization** – Patient mobility
+* **Drain** – Drainage monitoring
+
+---
+
+## 🔗 Entity Relationships
+
+* **One-to-Many**
+
+  * Diagnosis → DetailDiagnosis
+  * Patient → Observation
+
+* **Many-to-Many**
+
+  * Diet ↔ DietType
+
+* **One-to-One**
+
+  * Register ↔ VitalSign
+  * Register ↔ Diet
+  * Patient ↔ Room
+
+---
+
+## 🌐 REST API Endpoints
 
 ### Nurse Management
-- `POST /nurse/login`: Nurse authentication
-- `GET /nurse/`: Retrieve all nurses
-- `GET /nurse/name/{name}`: Find nurse by name
-- `GET /nurse/name/{id}`: Find nurse by ID
-- `POST /nurse/`: Create a new nurse
-- `PUT /nurse/{id}`: Update nurse details
-- `DELETE /nurse/{id}`: Delete a nurse
+
+* `POST /nurse/login`
+* `GET /nurse`
+* `GET /nurse/name/{name}`
+* `GET /nurse/{id}`
+* `POST /nurse`
+* `PUT /nurse/{id}`
+* `DELETE /nurse/{id}`
 
 ### Auxiliary Management
-- `POST /auxiliary/login`: Staff authentication
-- `POST /auxiliary`: Create new auxiliary staff
-- `GET /auxiliary/{id}`: Retrieve staff information
+
+* `POST /auxiliary/login`
+* `POST /auxiliary`
+* `GET /auxiliary/{id}`
 
 ### Patient Management
-- `POST /patient/list`: Batch add patients
-- `POST /patient`: Add a single patient
-- `GET /patient/{id}`: Retrieve patient data
-- `PUT /patient/{id}`: Update patient information
+
+* `POST /patient/list`
+* `POST /patient`
+* `GET /patient/{id}`
+* `PUT /patient/{id}`
 
 ### Register Management
-- `POST /register`: Create a new medical register
-- `GET /register/{id}`: Get complete register data by vitalsign ID
-- `GET /register/vitalSign/{id}`: Get vital sign history
-- `GET /register/diagnosis/{id}`: Get the latest diagnosis
+
+* `POST /register`
+* `GET /register/{id}`
+* `GET /register/vitalSign/{id}`
+* `GET /register/diagnosis/{id}`
 
 ### Room Management
-- `POST /room`: Create a new room
-- `POST /room/list`: Create multiple rooms
-- `GET /room`: Get all rooms
 
-## Database Schema
+* `POST /room`
+* `POST /room/list`
+* `GET /room`
 
-The system uses a relational database with relationships between:
-- One-to-many: Diagnosis-DetailDiagnosis, Patient-Observation
-- Many-to-many: Diet-DietType
-- One-to-one: Register-VitalSign, Register-Diet, Patient-Room
+---
 
-## Setup and Installation
+## 🗄 Database Design
 
-1. Clone the repository
-   ```
-   git clone https://github.com/nsaladie/MP13-Final-Proyect-BackEnd.git
-   ```
+Relational schema implemented using JPA/Hibernate with:
 
-2. Build with Maven
-   ```
-   mvn clean install
-   ```
+* Normalized tables
+* Foreign key constraints
+* Bidirectional mappings
+* Cascade operations where appropriate
 
-3. Configure your database in `application.properties`
+Designed for scalability and data integrity.
 
-4. Run the application
-   ```
-   mvn spring-boot:run
-   ```
+---
 
-## Development
+## ⚙️ Setup & Installation
 
-### Prerequisites
-- JDK 17+
-- Maven
-- MySQL database
+### 1️⃣ Clone Repository
 
-### Project Structure
+```bash
+git clone https://github.com/nsaladie/MP13-Final-Proyect-BackEnd.git
+```
+
+### 2️⃣ Build Project
+
+```bash
+mvn clean install
+```
+
+### 3️⃣ Configure Database
+
+Update `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/hospital
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+```
+
+### 4️⃣ Run Application
+
+```bash
+mvn spring-boot:run
+```
+
+---
+
+## 📁 Project Structure
+
 ```
 src/main/java/com/example/Hospital/Hospital/
-├── controller/    # REST controllers
-├── entity/        # JPA entities
-├── repository/    # Spring Data repositories
+├── controller/    # REST Controllers
+├── entity/        # JPA Entities
+├── repository/   # Spring Data Repositories
+├── service/      # Business Logic
 ```
 
-## Contributing
+## Author
+Nakul Kapre
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Hospital management systems best practices
-- Spring Boot community
